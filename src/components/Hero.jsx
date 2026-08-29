@@ -13,13 +13,12 @@ export default function Hero({ onStart }) {
             </h1>
             <p className="hero-subtitle">
               Answer a few questions about how you get around, power your home, and
-              live day to day, and Ring adds it up into one number — the same way a tree adds a
-              new ring every year.
+              live day to day, and CFT adds it up into one number.
             </p>
             <button className="btn btn-primary hero-cta" onClick={onStart}>
               Calculate my footprint
             </button>
-            <p className="hero-note">Takes about two minutes. Nothing leaves your browser.</p>
+            <p className="hero-note">Takes about a minutes. Nothing leaves your browser.</p>
           </div>
           <div className="hero-visual" aria-hidden="true">
             <TreeRingIllustration />

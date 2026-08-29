@@ -6,10 +6,10 @@ export default function Navbar({ onLogoClick, hasResult, onViewResults }) {
           type="button"
           className="navbar-logo"
           onClick={onLogoClick}
-          aria-label="Ring carbon footprint tracker — return to home"
+          aria-label="Carbon Footprint Tracker — return to home"
         >
           <RingMark />
-          <span>Ring</span>
+          <span>Carbon Footprint Tracker</span>
         </button>
 
         {hasResult && (
