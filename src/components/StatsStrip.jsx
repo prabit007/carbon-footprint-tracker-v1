@@ -12,7 +12,7 @@ const STATS = [
   {
     figure: '3',
     label: 'Categories that matter most',
-    detail: 'Transport, home energy, and food typically make up the bulk of a personal footprint.',
+    detail: 'Transport, home energy, and lifestyle typically make up the bulk of a personal footprint.',
   },
 ];
 

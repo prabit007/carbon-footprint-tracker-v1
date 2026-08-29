@@ -4,7 +4,6 @@ import { simulateChanges, round } from '../utils/calculations';
 const OPTIONS = [
   { key: 'driveLess20', label: 'Drive 20% less', icon: '\u{1F697}' },
   { key: 'publicTransportTwice', label: 'Use public transport twice a week', icon: '\u{1F68C}' },
-  { key: 'reduceMeat', label: 'Eat one step less meat', icon: '\u{1F957}' },
   { key: 'reduceElectricity10', label: 'Cut electricity use by 10%', icon: '\u26A1' },
   { key: 'fewerFlights', label: 'Take one fewer flight this year', icon: '\u2708\uFE0F' },
 ];

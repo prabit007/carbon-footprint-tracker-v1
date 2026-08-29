@@ -3,7 +3,6 @@ import { rankBreakdown } from '../utils/calculations';
 const COLORS = {
   transport: 'var(--moss)',
   energy: 'var(--gold)',
-  food: 'var(--fern)',
   other: 'var(--clay)',
 };
 

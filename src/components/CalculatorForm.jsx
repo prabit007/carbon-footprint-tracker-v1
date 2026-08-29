@@ -1,27 +1,23 @@
 import { useState } from 'react';
 import TransportationForm, { validateTransportation } from './TransportationForm';
 import EnergyForm, { validateEnergy } from './EnergyForm';
-import FoodForm, { validateFood } from './FoodForm';
 import LifestyleForm, { validateLifestyle } from './LifestyleForm';
 
 const STEPS = [
   { key: 'transport', title: 'Transportation', subtitle: 'How you get around day to day.' },
   { key: 'energy', title: 'Energy', subtitle: 'Your home\u2019s electricity and gas use.' },
-  { key: 'food', title: 'Food', subtitle: 'The dietary pattern that fits you best.' },
   { key: 'lifestyle', title: 'Lifestyle', subtitle: 'Flights, household, and shopping habits.' },
 ];
 
 const STEP_COMPONENTS = {
   transport: TransportationForm,
   energy: EnergyForm,
-  food: FoodForm,
   lifestyle: LifestyleForm,
 };
 
 const STEP_VALIDATORS = {
   transport: validateTransportation,
   energy: validateEnergy,
-  food: validateFood,
   lifestyle: validateLifestyle,
 };
 

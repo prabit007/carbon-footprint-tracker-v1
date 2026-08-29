@@ -9,7 +9,6 @@ import {
   TRANSPORT_FACTORS,
   ELECTRICITY_KG_PER_KWH,
   LPG_KG_PER_CYLINDER,
-  FOOD_FACTORS,
   TONNES_PER_FLIGHT,
   SHOPPING_FACTORS,
   CATEGORY_THRESHOLDS,
@@ -35,11 +34,6 @@ export function calculateEnergyEmissions({ monthlyKwh, lpgCylindersPerMonth }) {
   return (electricityKg + lpgKg) / KG_PER_TONNE;
 }
 
-/** Annual food emissions, in tonnes CO2e — a direct lookup. */
-export function calculateFoodEmissions({ diet }) {
-  return FOOD_FACTORS[diet]?.tonnesPerYear ?? 0;
-}
-
 /** Annual "other lifestyle" emissions (flights + shopping), in tonnes CO2e. */
 export function calculateOtherEmissions({ flightsPerYear, shoppingLevel }) {
   const flights = Number(flightsPerYear) || 0;
@@ -60,15 +54,13 @@ export function calculateFootprint(answers) {
   const household = Math.max(1, Number(answers.lifestyle?.householdSize) || 1);
   const energy = rawEnergy / household;
 
-  const food = calculateFoodEmissions(answers.food);
   const other = calculateOtherEmissions(answers.lifestyle);
 
-  const total = transport + energy + food + other;
+  const total = transport + energy + other;
 
   return {
     transport: round(transport),
     energy: round(energy),
-    food: round(food),
     other: round(other),
     total: round(total),
   };
@@ -92,7 +84,6 @@ export function rankBreakdown(breakdown) {
   const entries = [
     { key: 'transport', label: 'Transportation', icon: '🚗', value: breakdown.transport },
     { key: 'energy', label: 'Electricity & gas', icon: '⚡', value: breakdown.energy },
-    { key: 'food', label: 'Food', icon: '🍽️', value: breakdown.food },
     { key: 'other', label: 'Flights & shopping', icon: '✈️', value: breakdown.other },
   ];
   const total = breakdown.total || 1;
@@ -110,12 +101,8 @@ const RECOMMENDATIONS = {
     icon: '⚡',
     text: 'Electricity and gas make up your biggest share. Look at what runs when no one is using it: standby devices, water heaters, and lighting left on are usually the easiest wins.',
   },
-  food: {
-    icon: '🍽️',
-    text: 'Food is your largest source of emissions. You don\u2019t need to change everything at once — cutting back on meat a few meals a week already moves the number.',
-  },
   other: {
-    icon: '\u2708\ufe0f',
+    icon: '✈️',
     text: 'Flights and shopping are your biggest lever right now. Combining trips, flying less often, and buying less new stuff both count.',
   },
 };
@@ -153,13 +140,6 @@ export function simulateChanges(answers, changes) {
     // Represent the swap as a reduction proportional to the factor difference.
     const weeklySavingKg = swapDays * currentKm * Math.max(currentFactor - busFactor, 0);
     adjusted._transportWeeklySavingKg = (adjusted._transportWeeklySavingKg || 0) + weeklySavingKg;
-  }
-  if (changes.reduceMeat) {
-    const dietOrder = ['highMeat', 'mediumMeat', 'lowMeat', 'vegetarian', 'vegan'];
-    const idx = dietOrder.indexOf(adjusted.food.diet);
-    if (idx >= 0 && idx < dietOrder.length - 1) {
-      adjusted.food.diet = dietOrder[idx + 1];
-    }
   }
   if (changes.reduceElectricity10) {
     adjusted.energy.monthlyKwh = (Number(adjusted.energy.monthlyKwh) || 0) * 0.9;

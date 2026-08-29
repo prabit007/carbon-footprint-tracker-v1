@@ -8,9 +8,6 @@ export const defaultAnswers = {
     monthlyKwh: '',
     lpgCylindersPerMonth: '',
   },
-  food: {
-    diet: 'mediumMeat',
-  },
   lifestyle: {
     flightsPerYear: '',
     householdSize: '',

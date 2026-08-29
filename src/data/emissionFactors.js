@@ -30,16 +30,6 @@ export const ELECTRICITY_KG_PER_KWH = 0.05;
 // kg CO2 per standard 14.2 kg LPG cylinder (the size most households use).
 export const LPG_KG_PER_CYLINDER = 42;
 
-// Annual dietary footprint, in tonnes CO2e/year, following the general
-// pattern from published diet-emissions studies (meat and dairy carry the
-// largest share; plant-forward diets carry the least).
-export const FOOD_FACTORS = {
-  highMeat: { label: 'High meat', description: 'Meat with most meals', tonnesPerYear: 3.3, icon: '🥩' },
-  mediumMeat: { label: 'Medium meat', description: 'Meat most days', tonnesPerYear: 2.5, icon: '🍗' },
-  lowMeat: { label: 'Low meat', description: 'Meat a few times a week', tonnesPerYear: 1.9, icon: '🍲' },
-  vegetarian: { label: 'Vegetarian', description: 'No meat or fish', tonnesPerYear: 1.7, icon: '🥗' },
-  vegan: { label: 'Vegan', description: 'No animal products', tonnesPerYear: 1.5, icon: '🌱' },
-};
 
 // tonnes CO2e per flight, blended short/medium-haul average (round trip).
 export const TONNES_PER_FLIGHT = 0.5;
