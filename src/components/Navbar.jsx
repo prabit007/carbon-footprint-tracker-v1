@@ -1,27 +1,47 @@
 export default function Navbar({ onLogoClick, hasResult, onViewResults }) {
   return (
     <header className="navbar">
-      <div className="container navbar-inner">
-        <button className="navbar-logo" onClick={onLogoClick} aria-label="Ring — go to home">
+      <nav className="container navbar-inner" aria-label="Main navigation">
+        <button
+          type="button"
+          className="navbar-logo"
+          onClick={onLogoClick}
+          aria-label="Ring carbon footprint tracker — return to home"
+        >
           <RingMark />
           <span>Ring</span>
         </button>
+
         {hasResult && (
-          <button className="btn btn-ghost navbar-cta" onClick={onViewResults}>
-            My results
+          <button
+            type="button"
+            className="btn btn-ghost navbar-cta"
+            onClick={onViewResults}
+          >
+            <span>My results</span>
+            <span aria-hidden="true" style={{ fontSize: '1.05em', lineHeight: 1 }}>&rarr;</span>
           </button>
         )}
-      </div>
+      </nav>
     </header>
   );
 }
 
 function RingMark() {
   return (
-    <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
-      <circle cx="13" cy="13" r="11.5" fill="none" stroke="var(--moss)" strokeWidth="1.4" />
-      <circle cx="13" cy="13" r="7.8" fill="none" stroke="var(--moss)" strokeWidth="1.4" opacity="0.7" />
-      <circle cx="13" cy="13" r="3.6" fill="var(--gold)" opacity="0.9" />
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      style={{ flexShrink: 0 }}
+    >
+      <circle cx="12" cy="12" r="10" stroke="var(--moss)" strokeWidth="1.5" />
+      <circle cx="12" cy="12" r="6.5" stroke="var(--moss)" strokeWidth="1.5" strokeDasharray="2 3" opacity="0.8" />
+      <circle cx="12" cy="12" r="3" fill="var(--gold)" />
     </svg>
   );
 }
+
