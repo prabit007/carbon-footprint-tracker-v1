@@ -55,9 +55,7 @@ export default function EmissionBreakdown({ breakdown }) {
         {ranked.map((entry) => (
           <li key={entry.key} className="breakdown-legend-row">
             <span className="breakdown-legend-swatch" style={{ background: COLORS[entry.key] }} />
-            <span className="breakdown-legend-label">
-              {entry.icon} {entry.label}
-            </span>
+            <span className="breakdown-legend-label">{entry.label}</span>
             <span className="stat-figure breakdown-legend-value">{entry.value}t</span>
             <span className="breakdown-legend-share">{Math.round(entry.share * 100)}%</span>
           </li>

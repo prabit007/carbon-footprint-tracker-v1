@@ -20,7 +20,6 @@ export default function StatsStrip() {
   return (
     <section className="stats-strip">
       <div className="container">
-        <p className="eyebrow stats-strip-eyebrow">Why it's worth two minutes</p>
         <div className="stats-grid">
           {STATS.map((stat) => (
             <div className="card stat-card" key={stat.label}>

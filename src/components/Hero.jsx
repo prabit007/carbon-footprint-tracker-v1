@@ -6,7 +6,6 @@ export default function Hero({ onStart }) {
       <section className="hero">
         <div className="container hero-inner">
           <div className="hero-copy">
-            <p className="eyebrow">Annual carbon footprint estimate</p>
             <h1 className="hero-title">
               Measure your impact.
               <br />
@@ -14,7 +13,7 @@ export default function Hero({ onStart }) {
             </h1>
             <p className="hero-subtitle">
               Answer a few questions about how you get around, power your home, and
-              eat, and Ring adds it up into one number — the same way a tree adds a
+              live day to day, and Ring adds it up into one number — the same way a tree adds a
               new ring every year.
             </p>
             <button className="btn btn-primary hero-cta" onClick={onStart}>

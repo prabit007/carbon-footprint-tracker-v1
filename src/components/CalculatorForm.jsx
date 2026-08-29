@@ -80,9 +80,6 @@ export default function CalculatorForm({ initialAnswers, onComplete }) {
         </ol>
 
         <div className="card calculator-card">
-          <p className="eyebrow">
-            Step {stepIndex + 1} of {STEPS.length}
-          </p>
           <h2 className="calculator-title">{step.title}</h2>
           <p className="calculator-subtitle">{step.subtitle}</p>
 

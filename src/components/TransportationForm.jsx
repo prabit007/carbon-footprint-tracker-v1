@@ -5,7 +5,6 @@ import { TRANSPORT_FACTORS } from '../data/emissionFactors';
 const MODE_OPTIONS = Object.entries(TRANSPORT_FACTORS).map(([key, mode]) => ({
   key,
   label: mode.label,
-  icon: mode.icon,
 }));
 
 export default function TransportationForm({ data, onChange, errors }) {

@@ -1,7 +1,6 @@
 import EmissionBreakdown from './EmissionBreakdown';
 import BenchmarkCompare from './BenchmarkCompare';
 import Recommendations from './Recommendations';
-import WhatIfSimulator from './WhatIfSimulator';
 import { categorize } from '../utils/calculations';
 
 const CATEGORY_COPY = {
@@ -18,7 +17,6 @@ export default function Results({ answers, result, onCalculateAgain, onReset }) 
     <section className="results">
       <div className="container results-inner">
         <div className="results-header">
-          <p className="eyebrow">Your estimate</p>
           <h1 className="results-title">
             <span className="stat-figure results-total">{result.total}</span> tonnes CO
             <sub>2</sub>e / year
@@ -28,7 +26,6 @@ export default function Results({ answers, result, onCalculateAgain, onReset }) 
         </div>
 
         <div className="panel">
-          <p className="eyebrow">Breakdown</p>
           <h2 className="panel-title">Where it comes from</h2>
           <p className="panel-subtitle">Each ring segment is sized by its share of your total.</p>
           <EmissionBreakdown breakdown={result} />
@@ -36,7 +33,6 @@ export default function Results({ answers, result, onCalculateAgain, onReset }) 
 
         <BenchmarkCompare total={result.total} />
         <Recommendations breakdown={result} />
-        <WhatIfSimulator answers={answers} result={result} />
 
         <div className="results-actions">
           <button className="btn btn-primary" onClick={onCalculateAgain}>

@@ -82,9 +82,9 @@ export function categorize(totalTonnes) {
 /** Returns the breakdown entries sorted largest-first, with share %. */
 export function rankBreakdown(breakdown) {
   const entries = [
-    { key: 'transport', label: 'Transportation', icon: '🚗', value: breakdown.transport },
-    { key: 'energy', label: 'Electricity & gas', icon: '⚡', value: breakdown.energy },
-    { key: 'other', label: 'Flights & shopping', icon: '✈️', value: breakdown.other },
+    { key: 'transport', label: 'Transportation', value: breakdown.transport },
+    { key: 'energy', label: 'Electricity & gas', value: breakdown.energy },
+    { key: 'other', label: 'Flights & shopping', value: breakdown.other },
   ];
   const total = breakdown.total || 1;
   return entries
@@ -94,15 +94,12 @@ export function rankBreakdown(breakdown) {
 
 const RECOMMENDATIONS = {
   transport: {
-    icon: '🚗',
     text: 'Transportation is your largest source of emissions. Swapping a couple of trips a week for a bus, bike, or walk — or carpooling when you drive — is the fastest way to bring this down.',
   },
   energy: {
-    icon: '⚡',
     text: 'Electricity and gas make up your biggest share. Look at what runs when no one is using it: standby devices, water heaters, and lighting left on are usually the easiest wins.',
   },
   other: {
-    icon: '✈️',
     text: 'Flights and shopping are your biggest lever right now. Combining trips, flying less often, and buying less new stuff both count.',
   },
 };
@@ -112,52 +109,7 @@ export function getRecommendations(breakdown) {
   const ranked = rankBreakdown(breakdown).filter((entry) => entry.value > 0);
   return ranked.slice(0, 3).map((entry) => ({
     key: entry.key,
-    icon: RECOMMENDATIONS[entry.key]?.icon ?? entry.icon,
     label: entry.label,
     text: RECOMMENDATIONS[entry.key]?.text ?? '',
   }));
-}
-
-/**
- * Applies a set of "what if" lifestyle changes to the original answers and
- * recalculates. Each option in `changes` is a boolean flag; see
- * WhatIfSimulator.jsx for the option definitions.
- */
-export function simulateChanges(answers, changes) {
-  const adjusted = JSON.parse(JSON.stringify(answers));
-
-  if (changes.driveLess20) {
-    adjusted.transport.distanceKm = (Number(adjusted.transport.distanceKm) || 0) * 0.8;
-  }
-  if (changes.publicTransportTwice) {
-    // Swap two travel days a week from the current mode to bus.
-    const currentDays = Number(adjusted.transport.daysPerWeek) || 0;
-    const swapDays = Math.min(2, currentDays);
-    const currentMode = adjusted.transport.mode;
-    const currentKm = Number(adjusted.transport.distanceKm) || 0;
-    const currentFactor = TRANSPORT_FACTORS[currentMode]?.kgPerKm ?? 0;
-    const busFactor = TRANSPORT_FACTORS.bus.kgPerKm;
-    // Represent the swap as a reduction proportional to the factor difference.
-    const weeklySavingKg = swapDays * currentKm * Math.max(currentFactor - busFactor, 0);
-    adjusted._transportWeeklySavingKg = (adjusted._transportWeeklySavingKg || 0) + weeklySavingKg;
-  }
-  if (changes.reduceElectricity10) {
-    adjusted.energy.monthlyKwh = (Number(adjusted.energy.monthlyKwh) || 0) * 0.9;
-  }
-  if (changes.fewerFlights) {
-    adjusted.lifestyle.flightsPerYear = Math.max(
-      0,
-      (Number(adjusted.lifestyle.flightsPerYear) || 0) - 1
-    );
-  }
-
-  const result = calculateFootprint(adjusted);
-
-  if (adjusted._transportWeeklySavingKg) {
-    const annualSavingTonnes = (adjusted._transportWeeklySavingKg * 52) / KG_PER_TONNE;
-    result.transport = round(Math.max(0, result.transport - annualSavingTonnes));
-    result.total = round(Math.max(0, result.total - annualSavingTonnes));
-  }
-
-  return result;
 }

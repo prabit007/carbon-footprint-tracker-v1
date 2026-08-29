@@ -13,13 +13,13 @@
 // Electric vehicles are lower than the global EV average here because
 // Nepal's grid is hydropower-dominant, which is cleaner than most grids.
 export const TRANSPORT_FACTORS = {
-  petrol: { label: 'Petrol car', kgPerKm: 0.192, icon: '🚗' },
-  diesel: { label: 'Diesel car', kgPerKm: 0.171, icon: '🚙' },
-  motorcycle: { label: 'Motorcycle', kgPerKm: 0.103, icon: '🏍️' },
-  bus: { label: 'Bus', kgPerKm: 0.089, icon: '🚌' },
-  ev: { label: 'Electric vehicle', kgPerKm: 0.045, icon: '⚡' },
-  bicycle: { label: 'Bicycle', kgPerKm: 0, icon: '🚲' },
-  walking: { label: 'Walking', kgPerKm: 0, icon: '🚶' },
+  petrol: { label: 'Petrol car', kgPerKm: 0.192 },
+  diesel: { label: 'Diesel car', kgPerKm: 0.171 },
+  motorcycle: { label: 'Motorcycle', kgPerKm: 0.103 },
+  bus: { label: 'Bus', kgPerKm: 0.089 },
+  ev: { label: 'Electric vehicle', kgPerKm: 0.045 },
+  bicycle: { label: 'Bicycle', kgPerKm: 0 },
+  walking: { label: 'Walking', kgPerKm: 0 },
 };
 
 // kg CO2 per kWh of grid electricity. Nepal's supply is mostly hydro,

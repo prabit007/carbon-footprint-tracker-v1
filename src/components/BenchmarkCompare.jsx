@@ -11,7 +11,6 @@ export default function BenchmarkCompare({ total }) {
 
   return (
     <section className="panel">
-      <p className="eyebrow">In context</p>
       <h2 className="panel-title">How this compares</h2>
       <p className="panel-subtitle">
         The Nepal figure is an illustrative comparison, not an official per-capita statistic —
