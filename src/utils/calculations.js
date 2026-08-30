@@ -5,64 +5,32 @@
 // here touches React or the DOM, so it's easy to test or reuse.
 // ---------------------------------------------------------------------------
 
-import {
-  TRANSPORT_FACTORS,
-  ELECTRICITY_KG_PER_KWH,
-  LPG_KG_PER_CYLINDER,
-  TONNES_PER_FLIGHT,
-  SHOPPING_FACTORS,
-  CATEGORY_THRESHOLDS,
-} from '../data/emissionFactors';
+import { CATEGORY_THRESHOLDS } from '../data/emissionFactors';
 
 const KG_PER_TONNE = 1000;
+const PETROL_FACTOR = 2.31; // kg CO2e per litre of petrol
+const ELECTRICITY_FACTOR = 0.37; // kg CO2e per kWh of electricity
+const FLIGHT_FACTOR = 0.17; // kg CO2e per flight mile
 
-/** Annual transport emissions, in tonnes CO2e. */
-export function calculateTransportEmissions({ distanceKm, mode, daysPerWeek }) {
-  const factor = TRANSPORT_FACTORS[mode]?.kgPerKm ?? 0;
-  const km = Number(distanceKm) || 0;
-  const days = Number(daysPerWeek) || 0;
-  const annualKg = km * factor * days * 52;
-  return annualKg / KG_PER_TONNE;
-}
-
-/** Annual electricity + LPG emissions, in tonnes CO2e. */
-export function calculateEnergyEmissions({ monthlyKwh, lpgCylindersPerMonth }) {
-  const kwh = Number(monthlyKwh) || 0;
-  const cylinders = Number(lpgCylindersPerMonth) || 0;
-  const electricityKg = kwh * 12 * ELECTRICITY_KG_PER_KWH;
-  const lpgKg = cylinders * 12 * LPG_KG_PER_CYLINDER;
-  return (electricityKg + lpgKg) / KG_PER_TONNE;
-}
-
-/** Annual "other lifestyle" emissions (flights + shopping), in tonnes CO2e. */
-export function calculateOtherEmissions({ flightsPerYear, shoppingLevel }) {
-  const flights = Number(flightsPerYear) || 0;
-  const flightTonnes = flights * TONNES_PER_FLIGHT;
-  const shoppingTonnes = SHOPPING_FACTORS[shoppingLevel]?.tonnesPerYear ?? 0;
-  return flightTonnes + shoppingTonnes;
-}
-
-/**
- * Runs every category calculation and returns a full breakdown plus total.
- * Household size divides the electricity share of energy emissions, since
- * a home's power use is shared across the people living there.
- */
+/** Calculates CO2e emissions from petrol, electricity, and flight miles. */
 export function calculateFootprint(answers) {
-  const transport = calculateTransportEmissions(answers.transport);
+  const petrolLiters = Number(answers.petrolLiters) || 0;
+  const electricityKwh = Number(answers.electricityKwh) || 0;
+  const flightMiles = Number(answers.flightMiles) || 0;
 
-  const rawEnergy = calculateEnergyEmissions(answers.energy);
-  const household = Math.max(1, Number(answers.lifestyle?.householdSize) || 1);
-  const energy = rawEnergy / household;
+  const transportKg = petrolLiters * PETROL_FACTOR;
+  const energyKg = electricityKwh * ELECTRICITY_FACTOR;
+  const otherKg = flightMiles * FLIGHT_FACTOR;
+  const totalKg = transportKg + energyKg + otherKg;
+  const total = Math.round((totalKg / KG_PER_TONNE) * 100) / 100;
 
-  const other = calculateOtherEmissions(answers.lifestyle);
-
-  const total = transport + energy + other;
+  const roundKg = (val) => Math.round(val * 100) / 100;
 
   return {
-    transport: round(transport),
-    energy: round(energy),
-    other: round(other),
-    total: round(total),
+    transport: roundKg(transportKg),
+    energy: roundKg(energyKg),
+    other: roundKg(otherKg),
+    total,
   };
 }
 

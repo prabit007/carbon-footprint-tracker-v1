@@ -5,8 +5,9 @@ import CalculatorForm from './components/CalculatorForm';
 import Results from './components/Results';
 import Footer from './components/Footer';
 import { defaultAnswers } from './data/defaultAnswers';
-import { calculateFootprint } from './utils/calculations';
+
 import { useLocalStorage } from './utils/useLocalStorage';
+import { calculateFootprint } from './utils/calculations';
 
 const STORAGE_KEY = 'ring.carbonCalculator.v1';
 
