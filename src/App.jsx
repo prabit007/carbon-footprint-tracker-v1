@@ -43,10 +43,11 @@ export default function App() {
   }
 
   function handleLogoClick() {
-    setView(result ? 'results' : 'home');
+    setView('home');
   }
 
   return (
+
     <>
       <Navbar onLogoClick={handleLogoClick} hasResult={Boolean(result)} onViewResults={() => setView('results')} />
       <main className="flex-1">

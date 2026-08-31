@@ -9,7 +9,7 @@
   --color-text: #222;
   --color-muted: #666;
   --color-border: #d8d8d8;
-  --color-background: #ffff;
+  --color-background: #eaf4fb;
   --color-light: #f7f7f7;
   --color-error: #b33;
   --font-sans: Arial, Helvetica, sans-serif;
@@ -26,7 +26,6 @@
 
   body {
     margin: 0;
-    background: var(--color-background);
     color: var(--color-text);
     font-family: var(--font-sans);
     line-height: 1.5;
