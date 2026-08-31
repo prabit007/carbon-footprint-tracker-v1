@@ -38,9 +38,6 @@ function RingMark() {
       aria-hidden="true"
       style={{ flexShrink: 0 }}
     >
-      <circle cx="12" cy="12" r="10" stroke="var(--moss)" strokeWidth="1.5" />
-      <circle cx="12" cy="12" r="6.5" stroke="var(--moss)" strokeWidth="1.5" strokeDasharray="2 3" opacity="0.8" />
-      <circle cx="12" cy="12" r="3" fill="var(--gold)" />
     </svg>
   );
 }

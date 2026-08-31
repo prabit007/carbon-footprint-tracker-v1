@@ -1,9 +1,9 @@
 import { rankBreakdown } from '../utils/calculations';
 
 const COLORS = {
-  transport: 'var(--moss)',
-  energy: 'var(--gold)',
-  other: 'var(--clay)',
+  transport: '#4CAF50',
+  energy: '#2196F3',
+  other: '#8D6E63',
 };
 
 const RADIUS = 74;

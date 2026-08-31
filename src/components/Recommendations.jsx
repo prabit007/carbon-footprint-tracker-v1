@@ -7,7 +7,7 @@ export default function Recommendations({ breakdown }) {
 
   return (
     <section className="panel">
-      <h2 className="panel-title">Your recommendations</h2>
+      <h2 className="panel-title">Recommendations for You</h2>
       <p className="panel-subtitle">Ranked by where your emissions actually come from.</p>
 
       <div className="recommendation-list">

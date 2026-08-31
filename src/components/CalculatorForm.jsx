@@ -17,8 +17,8 @@ export default function CalculatorForm({ initialAnswers, onComplete }) {
     if (Number(answers.electricityKwh) < 0 || answers.electricityKwh === '') {
       errs.electricityKwh = 'Enter a number of 0 or more.';
     }
-    if (Number(answers.flightMiles) < 0 || answers.flightMiles === '') {
-      errs.flightMiles = 'Enter a number of 0 or more.';
+    if (Number(answers.flightKilometers) < 0 || answers.flightKilometers === '') {
+      errs.flightKilometers = 'Enter a number of 0 or more.';
     }
     return errs;
   }
@@ -55,11 +55,11 @@ export default function CalculatorForm({ initialAnswers, onComplete }) {
           placeholder="0"
         />
         <FormField
-          label="Flight miles per year"
-          unit="mi"
-          value={answers.flightMiles}
-          onChange={(v) => updateField('flightMiles', v)}
-          error={errors.flightMiles}
+          label="Flight Kilometers per year"
+          unit="km"
+          value={answers.flightKilometers}
+          onChange={(v) => updateField('flightKilometers', v)}
+          error={errors.flightKilometers}
           placeholder="0"
         />
         <div className="calculator-nav">

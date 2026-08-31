@@ -4,10 +4,13 @@ import Recommendations from './Recommendations';
 import { categorize } from '../utils/calculations';
 
 const CATEGORY_COPY = {
-  low: 'This sits close to what a genuinely sustainable, long-term average looks like. Keep it up, and consider what you could pass on to people around you.',
-  moderate: 'This is a typical, middle-of-the-road footprint — noticeably above a sustainable long-term average, with clear room to bring it down without a major lifestyle overhaul.',
-  high: 'This is well above a sustainable long-term average. A couple of targeted changes to your biggest category below would make a real difference.',
-  veryHigh: 'This is significantly above a sustainable long-term average. The good news: a small number of changes to your largest sources usually account for most of the gap.',
+  low: 'Nice work! Your footprint is relatively low. Keep doing what you’re doing and look for small ways to make it even better.',
+
+  moderate: 'You’re somewhere in the middle. There’s definitely room to cut back, but you don’t need to completely change your lifestyle to make a difference.',
+
+  high: 'Your footprint is on the higher side. Take a look at your biggest source below — that’s probably the best place to start making a difference.',
+
+  veryHigh: 'Your footprint is quite high, but don’t stress about changing everything at once. Focus on your biggest source first and take it from there.',
 };
 
 export default function Results({ answers, result, onCalculateAgain, onReset }) {
@@ -18,16 +21,13 @@ export default function Results({ answers, result, onCalculateAgain, onReset }) 
       <div className="container results-inner">
         <div className="results-header">
           <h1 className="results-title">
-            <span className="stat-figure results-total">{result.total}</span> tonnes CO
-            <sub>2</sub>e / year
+            <span className="stat-figure results-total">{result.total}</span> tonnes CO₂e /year
           </h1>
           <span className={`category-badge category-badge--${category.tone}`}>{category.label}</span>
           <p className="results-category-copy">{CATEGORY_COPY[category.tone]}</p>
         </div>
 
         <div className="panel">
-          <h2 className="panel-title">Where it comes from</h2>
-          <p className="panel-subtitle">Each ring segment is sized by its share of your total.</p>
           <EmissionBreakdown breakdown={result} />
         </div>
 
@@ -36,10 +36,10 @@ export default function Results({ answers, result, onCalculateAgain, onReset }) 
 
         <div className="results-actions">
           <button className="btn btn-primary" onClick={onCalculateAgain}>
-            Calculate again
+            Calculate Again
           </button>
           <button className="btn btn-ghost" onClick={onReset}>
-            Reset data
+            Reset Data
           </button>
         </div>
       </div>

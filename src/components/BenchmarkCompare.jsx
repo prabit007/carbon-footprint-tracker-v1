@@ -13,9 +13,7 @@ export default function BenchmarkCompare({ total }) {
     <section className="panel">
       <h2 className="panel-title">How this compares</h2>
       <p className="panel-subtitle">
-        The Nepal figure is an illustrative comparison, not an official per-capita statistic —
-        national totals are dominated by agriculture and land use, not individual lifestyle
-        choices, so methodologies vary.
+        Here’s how your footprint compares with a few reference points.
       </p>
 
       <div className="benchmark-bars">

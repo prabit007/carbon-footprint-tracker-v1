@@ -1,17 +1,3 @@
-// ---------------------------------------------------------------------------
-// emissionFactors.js
-//
-// Every number the calculator uses to turn "distance driven" or "kWh used"
-// into kilograms of CO2 lives here, in one place, so nothing is hardcoded
-// inside a component. These are widely-cited, general-purpose factors
-// (IPCC / DEFRA / IEA style averages) — not a certified national inventory.
-// Real footprints depend on your vehicle, your grid mix, and your exact
-// habits, so treat every result as an informed estimate, not a lab reading.
-// ---------------------------------------------------------------------------
-
-// kg CO2 emitted per passenger-kilometre, by transport mode.
-// Electric vehicles are lower than the global EV average here because
-// Nepal's grid is hydropower-dominant, which is cleaner than most grids.
 export const TRANSPORT_FACTORS = {
   petrol: { label: 'Petrol car', kgPerKm: 0.192 },
   diesel: { label: 'Diesel car', kgPerKm: 0.171 },
@@ -22,37 +8,16 @@ export const TRANSPORT_FACTORS = {
   walking: { label: 'Walking', kgPerKm: 0 },
 };
 
-// kg CO2 per kWh of grid electricity. Nepal's supply is mostly hydro,
-// so this is set well below the ~0.4–0.5 kg/kWh global average.
-// Swap this constant if you're calculating for a different country.
 export const ELECTRICITY_KG_PER_KWH = 0.05;
 
-// kg CO2 per standard 14.2 kg LPG cylinder (the size most households use).
-export const LPG_KG_PER_CYLINDER = 42;
-
-
-// tonnes CO2e per flight, blended short/medium-haul average (round trip).
 export const TONNES_PER_FLIGHT = 0.5;
 
-// Flat annual add-on, in tonnes CO2e, for general shopping/consumption habits.
-export const SHOPPING_FACTORS = {
-  low: { label: 'Low', description: 'Buy only what I need', tonnesPerYear: 0.3 },
-  medium: { label: 'Medium', description: 'Occasional non-essential purchases', tonnesPerYear: 0.7 },
-  high: { label: 'High', description: 'Frequent new purchases', tonnesPerYear: 1.3 },
-};
-
-// Reference points used on the results page, in tonnes CO2e/year.
-// Nepal's national personal-footprint figures vary by methodology and are
-// dominated by agriculture and land use rather than individual lifestyle
-// choices, so this is presented as an illustrative comparison, not an
-// official per-capita statistic.
 export const BENCHMARKS = {
   nepalIllustrative: 1.8,
-  globalAverage: 4.7,
+  globalAverage: 6.6,
   parisAlignedTarget2030: 2.3,
 };
 
-// Category thresholds, in tonnes CO2e/year, used to label a result.
 export const CATEGORY_THRESHOLDS = [
   { max: 2, label: 'Low', tone: 'low' },
   { max: 4, label: 'Moderate', tone: 'moderate' },
