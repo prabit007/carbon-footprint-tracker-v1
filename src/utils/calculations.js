@@ -27,12 +27,10 @@ export function calculateFootprint(answers) {
   };
 }
 
-/** Rounds to 2 decimal places for display-friendly tonnage. */
 export function round(value) {
   return Math.round(value * 100) / 100;
 }
 
-/** Maps a total (tonnes/year) to a category label + tone. */
 export function categorize(totalTonnes) {
   return (
     CATEGORY_THRESHOLDS.find((tier) => totalTonnes <= tier.max) ??

@@ -13,8 +13,6 @@ const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 export default function EmissionBreakdown({ breakdown }) {
   const ranked = rankBreakdown(breakdown);
 
-  // Precompute each segment's arc length and its running start-offset
-  // without mutating anything during render.
   const segments = ranked.reduce((acc, entry) => {
     const length = entry.share * CIRCUMFERENCE;
     const previousOffset = acc.length ? acc[acc.length - 1].offsetSoFar : 0;
