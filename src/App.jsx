@@ -56,7 +56,6 @@ export default function App() {
         )}
         {view === 'results' && result && (
           <Results
-            answers={answers}
             result={result}
             onCalculateAgain={handleCalculateAgain}
             onReset={handleReset}
