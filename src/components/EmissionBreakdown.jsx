@@ -23,8 +23,8 @@ export default function EmissionBreakdown({ breakdown }) {
   }, []);
 
   return (
-    <div className="breakdown">
-      <div className="breakdown-visual">
+    <div className="mt-[22px] grid grid-cols-[180px_1fr] items-center gap-6 max-[620px]:grid-cols-1 max-[620px]:justify-items-center">
+      <div className="w-[180px] max-[620px]:w-40">
         <svg viewBox="0 0 200 200" width="100%" height="100%" role="img" aria-label="Breakdown of your annual footprint by category">
           <circle cx="100" cy="100" r={RADIUS} fill="none" stroke="var(--paper-dim)" strokeWidth={STROKE} />
           {segments.map((entry) => (
@@ -42,22 +42,22 @@ export default function EmissionBreakdown({ breakdown }) {
               transform="rotate(-90 100 100)"
             />
           ))}
-          <text x="100" y="94" textAnchor="middle" className="breakdown-center-figure">
+          <text x="100" y="94" textAnchor="middle" className="fill-green text-[1.6rem] font-bold">
             {breakdown.total}
           </text>
-          <text x="100" y="114" textAnchor="middle" className="breakdown-center-label">
+          <text x="100" y="114" textAnchor="middle" className="fill-muted text-[0.58rem]">
             tonnes CO{'\u2082'}e / yr
           </text>
         </svg>
       </div>
 
-      <ul className="breakdown-legend">
+      <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
         {ranked.map((entry) => (
-          <li key={entry.key} className="breakdown-legend-row">
-            <span className="breakdown-legend-swatch" style={{ background: COLORS[entry.key] }} />
-            <span className="breakdown-legend-label">{entry.label}</span>
-            <span className="stat-figure breakdown-legend-value">{entry.value}t</span>
-            <span className="breakdown-legend-share">{Math.round(entry.share * 100)}%</span>
+          <li key={entry.key} className="grid grid-cols-[10px_1fr_auto_auto] items-center gap-2.5">
+            <span className="h-2.5 w-2.5 rounded-[2px]" style={{ background: COLORS[entry.key] }} />
+            <span className="text-[0.86rem]">{entry.label}</span>
+            <span className="text-[0.86rem] font-bold tabular-nums text-green">{entry.value}t</span>
+            <span className="min-w-[30px] text-right text-[0.76rem] text-muted">{Math.round(entry.share * 100)}%</span>
           </li>
         ))}
       </ul>

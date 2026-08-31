@@ -34,10 +34,10 @@ export default function CalculatorForm({ initialAnswers, onComplete }) {
   }
 
   return (
-    <section className="calculator">
-      <div className="container calculator-inner">
-        <h2 className="calculator-title">Carbon Footprint Calculator</h2>
-        <p className="calculator-subtitle">Enter your usage below.</p>
+    <section className="min-h-[65vh] pt-10 pb-[72px]">
+      <div className="mx-auto w-full max-w-[680px] px-6 max-[640px]:px-4">
+        <h2 className="mt-1.5 text-[1.55rem]">Carbon Footprint Calculator</h2>
+        <p className="mt-1.5 text-[0.92rem] text-muted">Enter your usage below.</p>
         <FormField
           label="Petrol litres per year"
           unit="L"
@@ -62,8 +62,12 @@ export default function CalculatorForm({ initialAnswers, onComplete }) {
           error={errors.flightKilometers}
           placeholder="0"
         />
-        <div className="calculator-nav">
-          <button type="button" className="btn btn-primary" onClick={handleSubmit}>
+        <div className="mt-7 flex items-center justify-between">
+          <button
+            type="button"
+            className="inline-flex cursor-pointer items-center justify-center gap-2 rounded border border-green bg-green px-[18px] py-2.5 text-[0.9rem] font-semibold text-white hover:bg-green-dark"
+            onClick={handleSubmit}
+          >
             See my results
           </button>
         </div>

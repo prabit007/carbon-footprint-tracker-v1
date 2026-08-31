@@ -18,14 +18,14 @@ const STATS = [
 
 export default function StatsStrip() {
   return (
-    <section className="stats-strip">
-      <div className="container">
-        <div className="stats-grid">
+    <section className="border-b border-border py-12">
+      <div className="mx-auto w-full max-w-[1080px] px-6 max-[640px]:px-4">
+        <div className="grid grid-cols-3 gap-4 max-[760px]:grid-cols-1">
           {STATS.map((stat) => (
-            <div className="card stat-card" key={stat.label}>
-              <span className="stat-figure stat-card-figure">{stat.figure}</span>
-              <h3 className="stat-card-label">{stat.label}</h3>
-              <p className="stat-card-detail">{stat.detail}</p>
+            <div className="rounded border border-border bg-white px-5 py-[22px]" key={stat.label}>
+              <span className="block text-[1.9rem] font-bold tabular-nums text-green">{stat.figure}</span>
+              <h3 className="mt-2 text-[0.95rem] font-semibold text-green">{stat.label}</h3>
+              <p className="mt-1.5 text-[0.85rem] text-muted">{stat.detail}</p>
             </div>
           ))}
         </div>

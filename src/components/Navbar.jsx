@@ -1,10 +1,10 @@
 export default function Navbar({ onLogoClick, hasResult, onViewResults }) {
   return (
-    <header className="navbar">
-      <nav className="container navbar-inner" aria-label="Main navigation">
+    <header className="border-b border-border bg-white">
+      <nav className="mx-auto flex min-h-[60px] w-full max-w-[1080px] items-center justify-between px-6 max-[640px]:px-4" aria-label="Main navigation">
         <button
           type="button"
-          className="navbar-logo"
+          className="flex cursor-pointer items-center gap-2.5 border-none bg-transparent p-0 text-[1.15rem] font-bold text-green-dark"
           onClick={onLogoClick}
           aria-label="Carbon Footprint Tracker — return to home"
         >
@@ -15,11 +15,11 @@ export default function Navbar({ onLogoClick, hasResult, onViewResults }) {
         {hasResult && (
           <button
             type="button"
-            className="btn btn-ghost navbar-cta"
+            className="inline-flex cursor-pointer items-center justify-center gap-2 rounded border border-border bg-white px-3.5 py-[7px] text-[0.82rem] font-semibold text-green hover:bg-light"
             onClick={onViewResults}
           >
             <span>My results</span>
-            <span aria-hidden="true" style={{ fontSize: '1.05em', lineHeight: 1 }}>&rarr;</span>
+            <span aria-hidden="true" className="text-[1.05em] leading-none">&rarr;</span>
           </button>
         )}
       </nav>
@@ -36,9 +36,8 @@ function RingMark() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
-      style={{ flexShrink: 0 }}
+      className="shrink-0"
     >
     </svg>
   );
 }
-

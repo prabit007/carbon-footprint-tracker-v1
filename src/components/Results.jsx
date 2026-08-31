@@ -17,28 +17,34 @@ export default function Results({ answers, result, onCalculateAgain, onReset }) 
   const category = categorize(result.total);
 
   return (
-    <section className="results">
-      <div className="container results-inner">
-        <div className="results-header">
-          <h1 className="results-title">
-            <span className="stat-figure results-total">{result.total}</span> tonnes CO₂e /year
+    <section className="pt-10 pb-20">
+      <div className="mx-auto flex w-full max-w-[720px] flex-col gap-5 px-6 max-[640px]:px-4">
+        <div className="flex flex-col items-center px-0 py-1 text-center">
+          <h1 className="mt-2 flex flex-wrap items-baseline justify-center gap-2 text-[clamp(1.9rem,4.5vw,2.5rem)]">
+            <span className="text-[1.15em] font-bold tabular-nums text-green">{result.total}</span> tonnes CO₂e /year
           </h1>
-          <span className={`category-badge category-badge--${category.tone}`}>{category.label}</span>
-          <p className="results-category-copy">{CATEGORY_COPY[category.tone]}</p>
+          <span className="mt-3 inline-block rounded border border-green bg-white px-3 py-1 text-[0.78rem] font-bold text-green">{category.label}</span>
+          <p className="mx-auto mt-3 max-w-[52ch] text-center text-[0.92rem] text-muted">{CATEGORY_COPY[category.tone]}</p>
         </div>
 
-        <div className="panel">
+        <div className="rounded border border-border bg-white p-7 max-[560px]:px-4 max-[560px]:py-5">
           <EmissionBreakdown breakdown={result} />
         </div>
 
         <BenchmarkCompare total={result.total} />
         <Recommendations breakdown={result} />
 
-        <div className="results-actions">
-          <button className="btn btn-primary" onClick={onCalculateAgain}>
+        <div className="mt-1.5 flex flex-wrap justify-center gap-3">
+          <button
+            className="inline-flex cursor-pointer items-center justify-center gap-2 rounded border border-green bg-green px-[18px] py-2.5 text-[0.9rem] font-semibold text-white hover:bg-green-dark"
+            onClick={onCalculateAgain}
+          >
             Calculate Again
           </button>
-          <button className="btn btn-ghost" onClick={onReset}>
+          <button
+            className="inline-flex cursor-pointer items-center justify-center gap-2 rounded border border-border bg-white px-[18px] py-2.5 text-[0.9rem] font-semibold text-green hover:bg-light"
+            onClick={onReset}
+          >
             Reset Data
           </button>
         </div>

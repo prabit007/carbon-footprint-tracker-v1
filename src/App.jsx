@@ -49,7 +49,7 @@ export default function App() {
   return (
     <>
       <Navbar onLogoClick={handleLogoClick} hasResult={Boolean(result)} onViewResults={() => setView('results')} />
-      <main style={{ flex: 1 }}>
+      <main className="flex-1">
         {view === 'home' && <Hero onStart={handleStart} />}
         {view === 'calculator' && (
           <CalculatorForm initialAnswers={answers} onComplete={handleCalculate} />

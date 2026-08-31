@@ -2,8 +2,8 @@ import FormField from './FormField';
 
 export default function EnergyForm({ data, onChange, errors }) {
   return (
-    <div className="step-body">
-      <div className="step-field-row">
+    <div className="mt-6 flex flex-col gap-5">
+      <div className="grid grid-cols-2 gap-4 max-[560px]:grid-cols-1">
         <FormField
           label="Monthly electricity use"
           unit="kWh"
