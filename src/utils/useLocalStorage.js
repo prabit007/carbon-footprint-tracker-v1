@@ -1,10 +1,5 @@
 import { useState } from 'react';
 
-/**
- * Works like useState, but reads its initial value from localStorage and
- * writes back to it on every update. Used to persist the most recent
- * calculation so a page refresh doesn't lose it.
- */
 export function useLocalStorage(key, initialValue) {
   const [value, setValue] = useState(() => {
     try {
@@ -21,8 +16,7 @@ export function useLocalStorage(key, initialValue) {
       try {
         window.localStorage.setItem(key, JSON.stringify(resolved));
       } catch {
-        // Storage can fail (private mode, quota) — the app still works,
-        // it just won't survive a refresh.
+        //ignore
       }
       return resolved;
     });
