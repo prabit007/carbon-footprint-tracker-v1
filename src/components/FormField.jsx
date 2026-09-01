@@ -21,7 +21,6 @@ export default function FormField({
         <input
           type="number"
           value={value}
-          placeholder={placeholder || '0'}
           onChange={(event) => onChange(event.target.value)}
           className="flex-1 border-none bg-transparent px-3 py-2.5 text-[0.95rem] focus:outline-none"
         />
